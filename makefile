@@ -1,10 +1,10 @@
 CC = g++
 CFLAGS = -Wall
-OBJECTS = P1
+OBJECTS = frontEnd
 
 all: $(OBJECTS)
 
-$(OBJECTS): %: %.cc
+$(OBJECTS): %: %.cpp
 	$(CC) $(CFLAGS) -o $@ $<
 
 .PHONY: clean purge
