@@ -1,4 +1,14 @@
-#include "parser.cpp"
+#include <string>
+#include <cstdio>
+#include <iostream>
+#include <cstdlib>
+#include <unistd.h>
+#include <fstream>
+
+#include "token.h"
+#include "scanner.h"
+#include "parser.h"
+#include "staticsem.h"
 
 // The help message
 void usage_message() {
@@ -72,8 +82,9 @@ int main(int argc, char** argv) {
     file.seekg(0);
   }
   
-  // Send file to testing function
-  parser(file);
+  // Get tree from parser
+  node_t root = parser(file);
+  statSem(root);
   
   // clean up files
   file.close();

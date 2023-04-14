@@ -1,9 +1,9 @@
-#include "scanner.h"
-#include <stack>
 #include <vector>
+#include <string>
+#include <iostream>
 
 enum stackitemID {Snt, Ant, Cnt, Dnt, Ent, Fnt, Gnt, Hnt, Jnt, Knt, Lnt, Gpnt, t1, t2, t3};
-std::string stackitemName[] = {"S", "A", "C", "D", "E", "F", "G", "H", "J", "K", "L", "G'", "t1", "t2", "t3"};
+static std::string stackitemName[] = {"S", "A", "C", "D", "E", "F", "G", "H", "J", "K", "L", "G'", "t1", "t2", "t3"};
 
 struct node_t {
   stackitemID nodeid;
@@ -12,12 +12,7 @@ struct node_t {
   int linenum;
 };
 
-struct stackitem_t {
-  stackitemID siid;
-  std::string sistr;
-  node_t* nodepos;
-  int linenum;
-};
+void parserErr(int);
 
 node_t ntS(std::fstream&);
 node_t ntA(std::fstream&);
@@ -42,17 +37,5 @@ node_t t2lcbrace(std::fstream&);
 node_t t2rcbrace(std::fstream&);
 node_t t3con(std::fstream&);
 
-int parser(std::fstream&);
-
-void printPreorder(node_t root, int level = 0) {
-  if (root.nodeid == t1 || root.nodeid == t2 || root.nodeid == t3) {
-    //std::cout << "\033[1;33m" << "File entry mode: scanning file..." << "\033[0m" << "\n";
-    std::cout << "\033[1;34m" << std::string(level, ' ') << stackitemName[root.nodeid] << ": " << "\033[0m";
-    std::cout << "\033[1;36m" << root.nodestr << "\n" << "\033[0m";
-  } else {
-    std::cout << "\033[1;35m" << std::string(level, ' ') << stackitemName[root.nodeid] << ":\n" << "\033[0m";
-  }
-  for (unsigned int i = 0; i < root.children.size(); i++) {
-    printPreorder(root.children[i], level + 4);
-  }
-}
+node_t parser(std::fstream&);
+void printPreorder(node_t, int=0);

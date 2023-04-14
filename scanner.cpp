@@ -1,4 +1,5 @@
-#include "parser.h"
+#include "token.h"
+#include "scanner.h"
 
 void error_msg(int errnum, char character, int linenum) {
   switch(errnum) {

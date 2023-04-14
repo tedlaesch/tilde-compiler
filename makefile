@@ -1,16 +1,20 @@
 CC = g++
 CFLAGS = -Wall
-OBJECTS = frontEnd
+NAME = frontEnd
+OBJECTS = frontEnd.o parser.o scanner.o staticsem.o
 
-all: $(OBJECTS)
+all: $(NAME) tidy
 
-$(OBJECTS): %: %.cpp
-	$(CC) $(CFLAGS) -o $@ $<
+$(NAME): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS)
 
-.PHONY: clean purge
+.PHONY: clean purge tidy
 
 purge:
 	ipcrm -a
 
 clean:
-	$(RM) $(OBJECTS) *.o
+	rm -f $(OBJECTS).o $(NAME)
+
+tidy:
+	rm -f $(OBJECTS)

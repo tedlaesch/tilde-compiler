@@ -15,11 +15,12 @@
 
 enum tokenID {T1_tk, T2_tk, T3_tk, EOF_tk, err_tk};
 
-std::string tokenName[] = {"T1 token", "T2 token", "T3 token", "EOF token", "Error"};
+static std::string tokenName[] = {"T1 token", "T2 token", "T3 token", "EOF token", "Error"};
+
 
 // index[current state][next character]
 
-int index[9][9] = {
+static int index[9][9] = {
 {1, -1, -1, -1, 4, 5, -1, 1004, 0},
 {-2, 2, -2, -2, -2, -2, -2, -3, -3},
 {-4, -4, -4, 3, -4, -4, -4, -5, -5},
