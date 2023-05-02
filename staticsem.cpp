@@ -50,7 +50,7 @@ void statSem(node_t root) {
   last = root.nodestr;
   if (root.nodeid == Snt) {
     std::cout << "\033[1;32m" << "Static Semantics OK!" << "\033[0m" << "\n";
-    printTable();
+    //printTable();
   }
 }
 
@@ -59,4 +59,8 @@ void printTable() {
   for (unsigned int i = 0; i < s_table.size(); i++) {
     std::cout << "\033[1;35m" << s_table[i] << "\033[0m" << std::endl;
   }
+}
+
+std::vector<std::string> getTable() {
+  return s_table;
 }

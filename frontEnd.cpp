@@ -4,11 +4,13 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <fstream>
+#include <vector>
 
 #include "token.h"
 #include "scanner.h"
 #include "parser.h"
 #include "staticsem.h"
+#include "asmgen.h"
 
 // The help message
 void usage_message() {
@@ -63,6 +65,8 @@ int main(int argc, char** argv) {
     // Keyboard entry
     printf("Text entry: type any number of tokens seperated by standard whitespace (space, tab, newline). End input by pressing Ctrl + D on a new line.\n\n");
     
+    filename = "out";
+    
     file.open("tmpkeyboardentry", std::fstream::out | std::fstream::in | std::fstream::trunc);
     if (!file.is_open()) {
       std::cout << "\033[1;31mError opening temporary file\n\033[0m\n";
@@ -84,7 +88,14 @@ int main(int argc, char** argv) {
   
   // Get tree from parser
   node_t root = parser(file);
+  
+  // Check static semantics
   statSem(root);
+  
+  // Generate assembly code
+  std::vector<std::string> var_table = getTable();
+  std::string asmfilename = filename + ".asm";
+  generate_code(root, asmfilename, var_table);
   
   // clean up files
   file.close();

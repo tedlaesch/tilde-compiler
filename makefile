@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall
-NAME = frontEnd
-OBJECTS = frontEnd.o parser.o scanner.o staticsem.o
+NAME = genCode
+OBJECTS = frontEnd.o parser.o scanner.o staticsem.o asmgen.o
 
 all: $(NAME) tidy
 
@@ -14,7 +14,7 @@ purge:
 	ipcrm -a
 
 clean:
-	rm -f $(OBJECTS).o $(NAME)
+	rm -f *.asm $(OBJECTS).o $(NAME)
 
 tidy:
 	rm -f $(OBJECTS)
