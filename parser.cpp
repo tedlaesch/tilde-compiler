@@ -384,7 +384,6 @@ node_t ntL(std::fstream& file) {
     nodeL.children.push_back(nodeTilde);
   } else if (sc.tid == EOF_tk || sc.tstr[0] == '~') {
     // Empty set
-    printf("L Empty\n");
   } else {
     // Error
     parserErr(-10);

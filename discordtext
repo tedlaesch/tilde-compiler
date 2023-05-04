@@ -1,0 +1,23 @@
+^ a_1                   & Initializations &
+^ a_2
+^ a_3
+^ a_4
+^ a_5
+^ a_7
+a_1 | +199 ~ ~          &  Assign +199 to a_1  &
+* a_1 ~                 &  Start of if statement - if a_1 is greater than 0  &
+  [ a_2 ~               &  Read in to a_2  &
+  a_2 | a_2 a_2 { ~ ~   &  Add a_2 to a_2 and store the result in a_2  &
+  ] a_2 ~ ~             &  Write out a_2  &
+  a_3 | a_4 +2 { ~ ~    &  Add a_4 and +2 and store the result in a_3  &
+  a_5 | +3 +4 } ~ ~     &  Subtract +4 from +3 and store the result in a_5  &                     
+  * +5 ~                &  Start of second if statement - if +5 is greater than 0  &
+    * +6 ~              &  Start of third if statement - if +6 is greater than 0  &
+      * +7 ~            &  Start of fourth if statement - if +7 is greater than 0  &
+        a_7 | +5 ~ ~    &  Assign the value +5 to a_7  &
+      ~                 &  Else statement for fourth if statement  &
+        ] +8 ~ ~        &  Write out +8  &
+    ~                   &  Else statement for third if statement  &
+  ~                     &  Else statement for second if statement  &
+~                       &  Else statement for first if statement  &
+  ] -42 ~ ~             &  Write out -42  &

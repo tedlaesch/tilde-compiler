@@ -105,13 +105,15 @@ void generate_code(node_t root, std::string filename, std::vector<std::string> v
     asmfile << gen_else_end() << std::endl;
   }
   
-  // Before we quit, make sure to close the output file
+  // Before we quit, make sure to add STOP, initialize variables, and close the output file
   if (root.nodeid == Snt) {
     asmfile << "STOP" << std::endl;
     for (unsigned int i = 0; i < var_table.size(); i++) {
       asmfile << var_table[i] << " 0" << std::endl;
     }
     asmfile.close();
+    std::cout << "\n" << "\033[1;32m" << "Compiled Successfully!" << "\033[0m" << "\n";
+    std::cout << "\033[1;36m" << "Output file --> " << filename << "\033[0m" << "\n";
   }
 }
 
