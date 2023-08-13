@@ -14,7 +14,7 @@ purge:
 	ipcrm -a
 
 clean:
-	del -f *.asm $(OBJECTS).o $(NAME).exe
+	rm -f *.asm $(OBJECTS).o $(NAME)
 
 tidy:
-	del -f $(OBJECTS)
+	rm -f $(OBJECTS)
